@@ -4,16 +4,12 @@
  * and open the template in the editor.
  */
 package rule_engine;
-import com.google.common.collect.HashMultimap;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.StringTokenizer;
 
 /**
@@ -90,6 +86,13 @@ public class RuleEngine {
             }
         }
     }
+    
+  
+    
+    /**
+     * 
+     * @param path  the path of the file 
+     */    
     public void readKB (String path) throws FileNotFoundException, IOException{
         try (BufferedReader in = new BufferedReader(new FileReader(path))) {
             String line;
@@ -120,7 +123,7 @@ public class RuleEngine {
             }
     }
     
-    
+  
     public void print_inferted(){
         System.out.println("inferted : ");
         System.out.println(inferted);
@@ -139,6 +142,30 @@ public class RuleEngine {
         }
     }
     
+    
+    public boolean isConsistentGeneral(){
+       
+       for(String question :inferted){
+        StringTokenizer st2 = new StringTokenizer(question, "-");
+        char c = question.charAt(0);
+        
+        if (c=='-'){
+            String question1= st2.nextToken("-");
+            if(this.inferted.contains(question) && 
+                    this.inferted.contains(question1)){
+                return false;
+            }
+        }
+        else{
+            if(this.inferted.contains(question) && 
+                    this.inferted.contains("-"+question)){
+                return false;
+            }
+            
+        }
+       }
+       return true;
+    }
     //check if the KB is consistent 
     public boolean isConsistent(String question){
         StringTokenizer st2 = new StringTokenizer(question, "-");
@@ -163,6 +190,16 @@ public class RuleEngine {
 
 
     
+  // for the CR
+    public HashMap<String,HashMap<String,Boolean>> return_rules(){
+        return rules;  
+    }
     
+    public HashMap<String,HashMap<String,Boolean>> return_preference(){
+        return preferences;
+    }
     
+    public HashMap <String,Boolean> return_facts(){
+        return facts;
+    }
 }

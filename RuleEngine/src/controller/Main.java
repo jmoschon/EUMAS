@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rule_engine;
+package controller;
 
+import conflict_resolution.conflict_resolution;
 import java.io.IOException;
+import rule_engine.RuleEngine;
 
 /**
  *
@@ -48,8 +50,15 @@ public class Main {
         engine.print_inferted();
         
         //ask if the KB is consistent
+        System.out.print("consistency :  ");
         System.out.println(engine.isConsistent("go_party"));
-                
+        System.out.print("genarl consistency :  ");
+        System.out.println(engine.isConsistentGeneral());
+        
+        
+         //if the KB is inconsistent sent the KB to to the CR model
+         conflict_resolution CR= new conflict_resolution(engine);
+            
         
     }
     

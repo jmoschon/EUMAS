@@ -1,0 +1,36 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package conflict_resolution;
+
+import heuristics.heuristic_set1;
+
+/**
+ *
+ * @author jmoschon
+ */
+public class conflict_resolution {
+    
+    private final rule_engine.RuleEngine originalKB ;
+    private final heuristics.heuristic_set1 heuristics;
+    
+    public conflict_resolution(rule_engine.RuleEngine KB){
+        this.originalKB=KB;
+        this.heuristics= new heuristic_set1();
+        //edw isws tha prepei na exw kati to opoio na krataei ola ta pithana CR kathos kai mia vathmologika apo ta HS
+        this.CRP(KB);
+    }
+    
+    
+    public  void CRP(rule_engine.RuleEngine KB){
+        
+       if (originalKB.isConsistentGeneral()== false){
+           this.heuristics.callRules(KB);
+       
+       
+       }
+        
+    }
+}
