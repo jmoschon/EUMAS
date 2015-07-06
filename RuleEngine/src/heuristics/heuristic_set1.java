@@ -27,7 +27,7 @@ public class heuristic_set1 {
         this.totalRules(KB);
     }
     //h1
-    public void totalRules (rule_engine.RuleEngine KB){
+    public HashMap<Integer,Integer> totalRules (rule_engine.RuleEngine KB){
         
         //count false => facts , rules, preference
         HashMap<String,HashMap<String,Boolean>>rules= KB.return_rules();
@@ -41,11 +41,10 @@ public class heuristic_set1 {
 //                System.out.println(active);
                 if (!active){
                 count++;
-                }
-            
-            }
-        
+                }            
+            }        
         }
+        
         for (String str : preferences.keySet()){
             System.out.println("to str einai :"+str);
             //cheks if the rules is active or not and count the false values
@@ -54,17 +53,17 @@ public class heuristic_set1 {
                 if (!active){
                 count++;
                 }
-            }
-        
+            }  
         }    
+        
         for (Boolean active : facts.values()){
 //                System.out.println(active);
                 if (!active){
                 count++;
                 }
         }   
-        
         this.heuristicMap.put(1, count);
+        return heuristicMap;
     }
     
 }

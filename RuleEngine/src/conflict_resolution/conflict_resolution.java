@@ -6,6 +6,7 @@
 package conflict_resolution;
 
 import heuristics.heuristic_set1;
+import java.util.HashMap;
 
 /**
  *
@@ -15,10 +16,13 @@ public class conflict_resolution {
     
     private final rule_engine.RuleEngine originalKB ;
     private final heuristics.heuristic_set1 heuristics;
+//    private final HashMap <rule_engine.RuleEngine,heuristic_set1> d;
     
     public conflict_resolution(rule_engine.RuleEngine KB){
         this.originalKB=KB;
         this.heuristics= new heuristic_set1();
+//        this
+        
         //edw isws tha prepei na exw kati to opoio na krataei ola ta pithana CR kathos kai mia vathmologika apo ta HS
         this.CRP(KB);
     }
@@ -26,8 +30,9 @@ public class conflict_resolution {
     
     public  void CRP(rule_engine.RuleEngine KB){
         
-       if (originalKB.isConsistentGeneral()== false){
-           this.heuristics.callRules(KB);
+        HashMap<rule_engine.RuleEngine, HashMap<Integer,Integer>> list= new HashMap<>();
+        if (originalKB.isConsistentGeneral()== false){
+//           this.heuristics.callRules(KB)
        
        
        }
