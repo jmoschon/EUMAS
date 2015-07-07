@@ -33,6 +33,8 @@ public class conflict_resolution {
         HashMap<rule_engine.RuleEngine, HashMap<Integer,Integer>> list= new HashMap<>();
         if (originalKB.isConsistentGeneral()== false){
 //           this.heuristics.callRules(KB)
+//            for ()
+            
        
        
        }
