@@ -27,6 +27,7 @@ public class Main {
         
         RuleEngine engine;
         engine = new RuleEngine();
+        
         engine.readKB("/home/jmoschon/Desktop/praktikh/test1");
 //        engine.add_rules("a => b");
 //        engine.add_rules("a => k");
@@ -54,10 +55,13 @@ public class Main {
         System.out.println(engine.isConsistent("go_party"));
         System.out.print("genarl consistency :  ");
         System.out.println(engine.isConsistentGeneral());
+        System.out.println("=======================================");
         
         
          //if the KB is inconsistent sent the KB to to the CR model
          conflict_resolution CR= new conflict_resolution(engine);
+//         CR.CRP(engine);
+//         engine.print_inferted();
             
         
     }

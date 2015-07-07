@@ -21,6 +21,7 @@ public class conflict_resolution {
     public conflict_resolution(rule_engine.RuleEngine KB){
         this.originalKB=KB;
         this.heuristics= new heuristic_set1();
+        
 //        this
         
         //edw isws tha prepei na exw kati to opoio na krataei ola ta pithana CR kathos kai mia vathmologika apo ta HS
@@ -31,10 +32,14 @@ public class conflict_resolution {
     public  void CRP(rule_engine.RuleEngine KB){
         
         HashMap<rule_engine.RuleEngine, HashMap<Integer,Integer>> list= new HashMap<>();
+        HashMap <rule_engine.RuleEngine,Integer> heuristicMap ;
         if (originalKB.isConsistentGeneral()== false){
 //           this.heuristics.callRules(KB)
 //            for ()
-            
+//            this.heuristics.callRules(KB);
+//            System.out.println("ppp");
+            heuristicMap=this.heuristics.h1(KB, 2);
+//            System.out.println(heuristicMap.keySet().size());
        
        
        }

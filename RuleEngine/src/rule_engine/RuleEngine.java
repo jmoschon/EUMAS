@@ -113,6 +113,7 @@ public class RuleEngine {
 //                    System.out.println(value);
 //                    System.out.println(rules.get(str).get(value));
                     if (rules.get(str).get(value)){
+//                        System.out.println(rules.get(str));
                         if (!inferted.contains(value)){
                             this.inferted.add(value);
                         }
@@ -136,6 +137,7 @@ public class RuleEngine {
 
     
     public void init_reasoner(){
+        inferted.removeAll(inferted);
         for (String str : facts.keySet()) {
             //vale mesa ola ta facts
 //            System.out.println(facts.get(str));
