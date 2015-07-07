@@ -111,15 +111,18 @@ public class RuleEngine {
             if (rules.containsKey(str)){
                 for (String value : rules.get(str).keySet()){ //keySet->set with the keys
 //                    System.out.println(value);
-                    if (!inferted.contains(value)){
-                        this.inferted.add(value);
-                    }
-                    if(rules.containsKey(value)){
-                        this.inferted.add(value);
-                        this.reasoner(value);
+//                    System.out.println(rules.get(str).get(value));
+                    if (rules.get(str).get(value)){
+                        if (!inferted.contains(value)){
+                            this.inferted.add(value);
+                        }
+                        if(rules.containsKey(value)){
+                            this.inferted.add(value);
+                            this.reasoner(value);
                     
+                        }
                     }
-            }
+                }
             }
     }
     
@@ -135,9 +138,13 @@ public class RuleEngine {
     public void init_reasoner(){
         for (String str : facts.keySet()) {
             //vale mesa ola ta facts
-            if (inferted.isEmpty() || !inferted.contains(str)){
-                this.inferted.add(str);
-                this.reasoner(str);
+//            System.out.println(facts.get(str));
+            if (facts.get(str)){
+                if (inferted.isEmpty() || !inferted.contains(str)){
+                
+                    this.inferted.add(str);
+                    this.reasoner(str);
+                }
             }
         }
     }

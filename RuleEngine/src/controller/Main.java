@@ -27,7 +27,7 @@ public class Main {
         
         RuleEngine engine;
         engine = new RuleEngine();
-        engine.readKB("/home/jmoschon/Desktop/praktikh/test");
+        engine.readKB("/home/jmoschon/Desktop/praktikh/test1");
 //        engine.add_rules("a => b");
 //        engine.add_rules("a => k");
 //        engine.add_rules("b => c");
