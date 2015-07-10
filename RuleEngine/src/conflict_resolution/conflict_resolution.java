@@ -5,7 +5,7 @@
  */
 package conflict_resolution;
 
-import heuristics.heuristic_set;
+import heuristics.heuristics;
 import java.util.HashMap;
 
 /**
@@ -15,12 +15,12 @@ import java.util.HashMap;
 public class conflict_resolution {
     
     private final rule_engine.RuleEngine originalKB ;
-    private final heuristics.heuristic_set heuristics;
+    private final heuristics heuristics;
 //    private final HashMap <rule_engine.RuleEngine,heuristic_set1> d;
     
     public conflict_resolution(rule_engine.RuleEngine KB){
         this.originalKB=KB;
-        this.heuristics= new heuristic_set(KB);
+        this.heuristics= new heuristics(KB);
         
 //        this
         

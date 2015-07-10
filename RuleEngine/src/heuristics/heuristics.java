@@ -17,7 +17,7 @@ import rule_engine.RuleEngine;
  *
  * @author jmoschon
  */
-public class heuristic_set {
+public class heuristics {
    
 //    private final HashMap <rule_engine.RuleEngine,Integer> heuristicMap ;
 //    private final ArrayList<> heuristics;
@@ -25,7 +25,7 @@ public class heuristic_set {
     private final rule_engine.RuleEngine originalKB;
     private  ArrayList<RuleEngine> candidatesKB;
     
-    public heuristic_set(rule_engine.RuleEngine originalKB){
+    public heuristics(rule_engine.RuleEngine originalKB){
        this.candidatesKB= new ArrayList<>();
        this.h1 = new h1_TotalRules(originalKB);
        this.originalKB= originalKB; 
