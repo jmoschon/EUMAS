@@ -292,7 +292,7 @@ public class RuleEngine {
         }
         return IDset;
     }
-    /**
+     /**
      * set a rule as Active
      * @param ID
      */
@@ -318,7 +318,10 @@ public class RuleEngine {
             }
         }
     }
-    
+     /**
+     * set a rule as InActivre
+     * @param ID
+     */    
     public void setInActive (int ID){
         if(rules.containsKey(ID)){
 //            System.out.println("poes");
@@ -343,8 +346,11 @@ public class RuleEngine {
             }
         }
     }
-        
-    public boolean CheckPreferences(){
+
+    /**
+    *if a>b and b is inferted and a is not inferted make a>b inactve
+    */   
+    public void CheckPreferences(){
         
         String key = null;
         String value = null;
@@ -362,7 +368,7 @@ public class RuleEngine {
                 
             }
         }
-        return check;
+//        return check;
     }
 
 }

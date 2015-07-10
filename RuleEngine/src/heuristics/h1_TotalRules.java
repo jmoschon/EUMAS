@@ -6,6 +6,7 @@
 package heuristics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -47,24 +48,26 @@ public class h1_TotalRules {
             
             for (Set<Integer> subset1 : subset) {
                 rule_engine.RuleEngine KB = new RuleEngine(originalKB);
-//                System.out.println("-----------------");
                 Iterator itr = subset1.iterator();
-//                System.out.println(subset1);
                 while (itr.hasNext()){
                     int ID =(int) itr.next();       
                     KB.setInActive(ID);
                 }
                 KB.init_reasoner();
                 if (KB.isConsistentGeneral()){
+                    KB.CheckPreferences();
                     candidatesKB.add(KB);
                 }
             }
             if (!candidatesKB.isEmpty()){
-                
-               return candidatesKB; 
+               core(candidatesKB);
+               if (RulesNumber(candidatesKB)==i)
+                    return candidatesKB; 
             }
         }
+        core(candidatesKB);
         return candidatesKB;
+        
     }
         
     
@@ -74,11 +77,27 @@ public class h1_TotalRules {
      */
     public void core(ArrayList <rule_engine.RuleEngine> candidatesKB){
         
-        
+        ArrayList<Integer> rules_counter= new ArrayList<>();
+        for (int i=0 ; i<candidatesKB.size(); i++) {
+           rules_counter.add(countActiveRules(candidatesKB.get(i)));
+        }
+        for (int i=0 ; i <rules_counter.size(); i++){
+            if (rules_counter.get(i)> Collections.min(rules_counter)){
+                candidatesKB.remove(i);
+            }
+        } 
     
     }
     
-    public void countactiveRules(rule_engine.RuleEngine KB){
+    
+    private Integer RulesNumber(ArrayList <rule_engine.RuleEngine> candidatesKB){
+        ArrayList<Integer> rules_counter= new ArrayList<>();
+        for (int i=0 ; i<candidatesKB.size(); i++) {
+           rules_counter.add(countActiveRules(candidatesKB.get(i)));
+        }
+        return Collections.min(rules_counter);
+    }
+    private int countActiveRules(rule_engine.RuleEngine KB){
         
         HashMap <Integer,HashMap<String,HashMap<String,Boolean>>>rules;
         HashMap <Integer,HashMap<String,HashMap<String,Boolean>>>preferences;
@@ -100,7 +119,6 @@ public class h1_TotalRules {
                 }
             }
         }
-
         for (int i: preferences.keySet()){
             for (String str :preferences.get(i).keySet()){
                 for (String str1 : preferences.get(i).get(str).keySet()){
@@ -110,7 +128,6 @@ public class h1_TotalRules {
                 }
             }
         }        
-        
         for (int i : facts.keySet()){
             for (String str : facts.get(i).keySet()){
                 if (!facts.get(i).get(str)){
@@ -118,7 +135,7 @@ public class h1_TotalRules {
                 }
             }
         }
-        
+        return NumberOfInActiveRules;
     }
     
     private static void getSubsets(List<Integer> superSet, int k, int idx, Set<Integer> current,List<Set<Integer>> solution) {

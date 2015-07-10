@@ -43,6 +43,7 @@ public class heuristic_set {
                 
                 KB.print_facts();
                 KB.print_rules();
+                KB.print_preferences();
                 KB.print_inferted();
                 System.out.println(KB.isConsistentGeneral());
                 System.out.println("______________________________");
