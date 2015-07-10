@@ -44,7 +44,7 @@ public class Main {
 //        engine.add_rules("a > -d");
 ////        
         
-        
+        System.out.println("===============KB=================");
         engine.print_facts();
         engine.print_rules();
         engine.print_preferences();
