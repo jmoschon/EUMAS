@@ -5,6 +5,7 @@
  */
 package controller;
 
+//import conflict_resolution.conflict_resolution;
 import conflict_resolution.conflict_resolution;
 import java.io.IOException;
 import rule_engine.RuleEngine;
@@ -28,7 +29,7 @@ public class Main {
         RuleEngine engine;
         engine = new RuleEngine();
         
-        engine.readKB("/home/jmoschon/Desktop/praktikh/test1");
+        engine.readKB("/home/jmoschon/Desktop/praktikh/test");
 //        engine.add_rules("a => b");
 //        engine.add_rules("a => k");
 //        engine.add_rules("b => c");
@@ -56,7 +57,7 @@ public class Main {
         System.out.print("genarl consistency :  ");
         System.out.println(engine.isConsistentGeneral());
         System.out.println("=======================================");
-        
+        engine.returnIDset();
         
          //if the KB is inconsistent sent the KB to to the CR model
          conflict_resolution CR= new conflict_resolution(engine);
