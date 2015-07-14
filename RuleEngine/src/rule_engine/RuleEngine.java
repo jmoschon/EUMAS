@@ -119,7 +119,7 @@ public class RuleEngine {
      * @param object
      * @return 
    */
-  public static Object deepClone(Object object) {
+  private static Object deepClone(Object object) {
     try {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -249,7 +249,14 @@ public class RuleEngine {
         return true;
     }
 
-
+    /**
+     * this function returns how many rules are into the KB
+     * @return size of KB
+     */
+    public int size(){
+       return this.facts.size()+this.preferences.size()+this.rules.size();
+        
+    }
     
   // for the CR
     public HashMap <Integer,HashMap<String,HashMap<String,Boolean>>> return_rules(){

@@ -33,7 +33,7 @@ public class conflict_resolution {
         
         if (originalKB.isConsistentGeneral()== false){
             this.heuristics.call();
-       }
+        }
         
     }
 }

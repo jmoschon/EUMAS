@@ -20,11 +20,14 @@ import rule_engine.RuleEngine;
  */
 public class h1_TotalRules {
     
-    rule_engine.RuleEngine originalKB;
-    HashSet <rule_engine.RuleEngine> candidatesKB;
+    private rule_engine.RuleEngine originalKB;
+    private HashSet <rule_engine.RuleEngine> candidatesKB;
+    private int compromise_lvl ; 
     
     public h1_TotalRules(rule_engine.RuleEngine originalKB){
         this.originalKB=originalKB;
+        this.compromise_lvl=1;
+        
     } 
     
     public h1_TotalRules (HashSet <rule_engine.RuleEngine> candidatesKB){
@@ -37,11 +40,13 @@ public class h1_TotalRules {
      * @return core
     */
     public ArrayList<RuleEngine> core(rule_engine.RuleEngine originalKB){
+//        System.out.println("peos");
        
         ArrayList <rule_engine.RuleEngine> candidatesKB = new ArrayList<>();
         int numbeOfRules = originalKB.returnIDset().size();
         
-        for (int i=1; i<=numbeOfRules; i++){
+        for (int i=this.compromise_lvl; i<=numbeOfRules; i++){
+            System.out.println("=========>>>"+compromise_lvl);
             
             List<Integer>superset = originalKB.returnIDset();
             List<Set<Integer>> subset = getSubsets(superset, i);
@@ -62,10 +67,12 @@ public class h1_TotalRules {
             if (!candidatesKB.isEmpty()){
                core(candidatesKB);
                if (RulesNumber(candidatesKB)==i)
+                   this.compromise_lvl=i+1;
                     return candidatesKB; 
             }
         }
         core(candidatesKB);
+        this.compromise_lvl=numbeOfRules;
         return candidatesKB;
         
     }
